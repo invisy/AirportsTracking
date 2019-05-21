@@ -217,7 +217,7 @@ namespace Deikstra_and_AStar // не забудьте підключити names
 
     public class AStar
     {
-
+        // added new class
         static NextAirport Source { get; set; }
 
         static NextAirport Destination { get; set; }
