@@ -19,10 +19,6 @@ namespace Airports
         protected internal static string[] Neighbours { get; set; }
         protected internal static Dictionary<string, NextAirport> DictOfNeighbours { get; set; }
 
-
-
-
-
         protected static internal Airport GetAirPort(string airportCodeName)
         {
             try
@@ -49,7 +45,7 @@ namespace Airports
         protected static internal List<Airport> ReturnListOfAirportsBy2City(string cityOne, string cityTwo)
         {
             var list = new List<Airport>();
-            Airports = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/airports.txt");
+            Airports = GetAllInfoFromFile("Resources/airports.txt");
             var allAirports = GetAirPort();
             foreach(var airport in allAirports)
             {
@@ -121,9 +117,9 @@ namespace Airports
             try
             {
                 DictOfNeighbours = new Dictionary<string, NextAirport>();
-                Airports = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/airports.txt");
-                Routes = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/routes.txt");
-                Neighbours = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/nextStations.txt");
+                Airports = GetAllInfoFromFile("Resources/airports.txt");
+                Routes = GetAllInfoFromFile("Resources/routes.txt");
+                Neighbours = GetAllInfoFromFile("Resources/nextStations.txt");
                 var allAirports = GetAirPort();
                 foreach (var airport in allAirports)
                 {
@@ -210,7 +206,7 @@ namespace Airports
                             csv.AppendLine(newLine);
                     }
                 }
-                File.WriteAllText("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/nextStations.txt", csv.ToString());
+                File.WriteAllText("Resources/nextStations.txt", csv.ToString());
             }
             catch (Exception a)
             {
