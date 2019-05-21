@@ -95,6 +95,7 @@
     <Compile Include="Structures\MyList.cs" />
     <Compile Include="Structures\MyQueue.cs" />
     <Compile Include="Structures\PriorityQueue.cs" />
+    <Compile Include="testconsole.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
