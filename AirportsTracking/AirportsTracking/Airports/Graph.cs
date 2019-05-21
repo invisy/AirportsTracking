@@ -49,7 +49,7 @@ namespace Airports
         private const int PRICE_FOR_1_KILOMETR = 32;
         static Dictionary<NextAirport, NextAirport> Path { get; set; }
 
-        static NextAirport Source { get; set; }
+        public static NextAirport Source { get; set; }
 
         static NextAirport Destination { get; set; }
 
