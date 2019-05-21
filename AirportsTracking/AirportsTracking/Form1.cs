@@ -11,7 +11,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using Deikstra_and_AStar;
+//using Deikstra_and_AStar;
 using Airports;
 
 namespace AirportsTracking
