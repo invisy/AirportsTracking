@@ -1,4 +1,4 @@
-﻿namespace Visualization
+﻿namespace AirportsTracking
 {
     partial class Form1
     {

@@ -14,7 +14,7 @@ using GMap.NET.WindowsForms.Markers;
 
 using Airports;
 
-namespace Visualization
+namespace AirportsTracking
 {
     public partial class Form1 : Form
     {
