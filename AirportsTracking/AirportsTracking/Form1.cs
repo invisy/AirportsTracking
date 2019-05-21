@@ -11,7 +11,7 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-
+using Deikstra_and_AStar;
 using Airports;
 
 namespace AirportsTracking
@@ -29,6 +29,7 @@ namespace AirportsTracking
         private void buttonCalc_Click(object sender, EventArgs e)
         {
             Graph.DijkstraMinPath("DME", "LAS");
+            // AStar.AStarMinPath("DME", "LAS"); затестіть, чи працює алгоритм
 
 
             gMap.MapProvider = GMapProviders.GoogleMap;
