@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Airports
 {
@@ -152,7 +153,7 @@ namespace Airports
             Console.WriteLine(" Count of vetrices between two vertices = {0}", result.Count);
             Console.WriteLine("Path with minimal cost: ");
             for (int i = result.Count-1; i >= 0; i--)
-                Console.Write(result[i].IATA +" ->>>");
+                MessageBox.Show(result[i].IATA +" ->>>");
            
            
            

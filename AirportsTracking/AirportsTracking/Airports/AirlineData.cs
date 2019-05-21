@@ -49,7 +49,7 @@ namespace Airports
         protected static internal List<Airport> ReturnListOfAirportsBy2City(string cityOne, string cityTwo)
         {
             var list = new List<Airport>();
-            Airports = GetAllInfoFromFile("airports.txt");
+            Airports = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/airports.txt");
             var allAirports = GetAirPort();
             foreach(var airport in allAirports)
             {
@@ -121,9 +121,9 @@ namespace Airports
             try
             {
                 DictOfNeighbours = new Dictionary<string, NextAirport>();
-                Airports = GetAllInfoFromFile("airports.txt");
-                Routes = GetAllInfoFromFile("routes.txt");
-                Neighbours = GetAllInfoFromFile("nextStations.txt");
+                Airports = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/airports.txt");
+                Routes = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/routes.txt");
+                Neighbours = GetAllInfoFromFile("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/nextStations.txt");
                 var allAirports = GetAirPort();
                 foreach (var airport in allAirports)
                 {
@@ -210,7 +210,7 @@ namespace Airports
                             csv.AppendLine(newLine);
                     }
                 }
-                File.WriteAllText("nextStations.txt", csv.ToString());
+                File.WriteAllText("E:/KPI/GITHUB/Repos/AirportsTracking/AirportsTracking/AirportsTracking/Resources/nextStations.txt", csv.ToString());
             }
             catch (Exception a)
             {
