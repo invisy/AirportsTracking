@@ -81,7 +81,7 @@ namespace Airports
 
         }
 
-        protected static internal void DijkstraMinPath(string sourceCode, string destinationCode)
+        protected static internal List<NextAirport> DijkstraMinPath(string sourceCode, string destinationCode)
         {
             try
             {
@@ -110,9 +110,8 @@ namespace Airports
                         Graph.Path = path;
                         Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
                         Console.WriteLine("Count of visited vertices = {0}", visited.Count);
-                        ReturnMinPath();
                         
-                        return;
+                        return ReturnMinPath();
                     }
                     visited.Add(_flight.IATA);
 
@@ -144,10 +143,11 @@ namespace Airports
             {
                 Console.WriteLine(r);
             }
-
+            //Мейбі тут не так ретурн
+            return null;
         
         }
-        protected static internal void ReturnMinPath()
+        protected static internal List<NextAirport> ReturnMinPath()
         {
            
             List<NextAirport> result = new List<NextAirport>();
@@ -164,9 +164,10 @@ namespace Airports
             Console.WriteLine(" Count of vetrices between two vertices = {0}", result.Count);
             Console.WriteLine("Path with minimal cost: ");
             for (int i = result.Count-1; i >= 0; i--)
-                MessageBox.Show(result[i].IATA +" ->>>");
-           
-           
+                Console.WriteLine(result[i].IATA +" ->>>");
+
+            result.Reverse();
+            return result;
            
 
         }
