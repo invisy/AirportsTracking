@@ -251,7 +251,7 @@ namespace Airports
             return distance;
         }
 
-        protected static internal void AStarMinPath(string sourceCode, string destinationCode)
+        protected static internal List<NextAirport> AStarMinPath(string sourceCode, string destinationCode)
         {
             // отримуємо найкоротший шлях від аеропорта А до аеропорта Б 
             AirlineData.LoadData();
@@ -277,8 +277,8 @@ namespace Airports
                     //Console.WriteLine("SUCCESS!");
                     Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
                     Console.WriteLine($"There is the way from {source.AirportName} to {AirlineData.GetAirPort(destinationCode).AirportName} ");
-                    ReturnMinPath(currentAirport);
-                    return;
+                    
+                    return ReturnMinPath(currentAirport);
                     // ReturnMinPath();                   
                 }
                 var x = openSet.Dequeue(); // openSet.(currentAirport);
@@ -313,10 +313,10 @@ namespace Airports
                 }
             }
             Console.WriteLine($"There is no way from airport with name {source.AirportName} to airport {AirlineData.GetAirPort(destinationCode).AirportName}");
-            return;
+            return null;
         }
 
-        protected static internal void ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
+        protected static internal List<NextAirport> ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
         {
             var result = new List<NextAirport>();
             var currentNode = pathNode;
@@ -330,6 +330,9 @@ namespace Airports
             result.RemoveAt(0);
             foreach (var x in result)
                 Console.Write($" {x.IATA} ->>>");
+
+            return result;
+
         }
 
     }

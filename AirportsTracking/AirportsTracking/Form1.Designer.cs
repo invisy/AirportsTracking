@@ -100,7 +100,7 @@
             this.gMap.MaxZoom = 18;
             this.gMap.MinZoom = 2;
             this.gMap.MouseWheelZoomEnabled = true;
-            this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.ViewCenter;
+            this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.gMap.Name = "gMap";
             this.gMap.NegativeMode = false;
             this.gMap.PolygonsEnabled = true;

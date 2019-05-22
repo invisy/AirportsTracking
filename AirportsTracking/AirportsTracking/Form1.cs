@@ -81,7 +81,7 @@ namespace AirportsTracking
             string IATA1 = textBoxIATA1.Text;
             string IATA2 = textBoxIATA2.Text;
 
-            airList = Graph.DijkstraMinPath(IATA1, IATA2);
+            airList = AStar.AStarMinPath(IATA1, IATA2);
             for (int i = 0; i < airList.Count; i++)
                 allAirports.Add(airList[i].Current);
 

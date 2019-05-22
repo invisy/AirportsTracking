@@ -15,7 +15,7 @@ class testConsole
     static public void MainDebug()
     {
         Console.WriteLine("Just Text!");
-        ALGORITMxD();
+        //ALGORITMxD();
         //Write your code HERE
     }
 
