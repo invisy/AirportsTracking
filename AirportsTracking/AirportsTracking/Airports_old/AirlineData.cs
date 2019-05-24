@@ -39,14 +39,14 @@ namespace Airport_old
             return null;
         }
 
-        protected static internal List<Airport> ReturnListOfAirportsBy2City(string cityOne, string cityTwo)
+        protected static internal List<Airport> ReturnListOfAirportsBy2City(string city1, string city2)
         {
             var list = new List<Airport>();
             Airports = GetAllInfoFromFile("Resources/airports.txt");
             var allAirports = GetAirPort();
             foreach (var airport in allAirports)
             {
-                if (airport.CityName == cityOne || airport.CityName == cityTwo)
+                if (airport.CityName == city1 || airport.CityName == city2)
                 {
                     list.Add(airport);
                 }
