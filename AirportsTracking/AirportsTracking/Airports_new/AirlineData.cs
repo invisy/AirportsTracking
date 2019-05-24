@@ -10,6 +10,7 @@ namespace AirportsTracking
     {
         const string airports_path = "Resources/airports.txt";
         const string routs_path = "Resources/routes.txt";
+        static public bool dataIsLoaded = false;
         protected internal static Dictionary<string, Airport> DictOfAirports { get; set; }
         static public void LoadData()
         {
@@ -40,6 +41,7 @@ namespace AirportsTracking
                             DictOfAirports[temp[3]].routes.AddLast(route);
                     }
                 }
+                dataIsLoaded = true;
             }
             catch (ArgumentException a)
             {

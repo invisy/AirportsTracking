@@ -22,18 +22,16 @@ namespace AirportsTracking
 
         static void ALGORITMxD()
         {
-            //Console.Read();
-            /*
-            Console.WriteLine("     Dijkstra:");
-            Graph.DijkstraMinPath("4029", "3877"); // Domodedovo - McCarran
             Console.WriteLine("     A*:");
-            AStar.AStarMinPath("4029", "3877");
-            */
-            Console.WriteLine("     A*:");
+             AStar.AStarMinPath("3462", "246");
+             Console.WriteLine("     Dijkstra:");
+             Graph.DijkstraMinPath("3462", "246"); //   PHX OUA interesting test  3462 ->>>3682 ->>>302 ->>>246 ->>>
+
+            /*Console.WriteLine("     A*:");
             AStar.AStarMinPath("340", "13671");
             Console.WriteLine("     Dijkstra:");
-            Graph.DijkstraMinPath("340", "13671"); // frankfurt - "Noonkanbah Airport","Noonkanbah","Australia"
-            
+            Graph.DijkstraMinPath("340", "13671"); // frankfurt - "Noonkanbah Airport","Noonkanbah","Australia"*/
+
 
             // "340", "3877" straight
             //AStar.AStarMinPath("4029", "3877");
