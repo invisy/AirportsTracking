@@ -29,7 +29,8 @@ namespace AirportsTracking
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-           /* gMap.MapProvider = GMapProviders.GoogleMap;
+            /*
+            gMap.MapProvider = GMapProviders.GoogleMap;
 
             allAirports.Clear();
             overlay.Markers.Clear();
@@ -39,7 +40,7 @@ namespace AirportsTracking
             string city1 = textBoxCity1.Text;
             string city2 = textBoxCity2.Text;
 
-            allAirports = AirlineData.ReturnListOfAirportsBy2City(city1, city2);
+            //allAirports = AirlineData.ReturnListOfAirportsBy2City(city1, city2);
             for (int i = 0; i < allAirports.Count; i++)
             {
                 PointLatLng point = new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude);
@@ -57,7 +58,8 @@ namespace AirportsTracking
                     overlay.Markers.Add(marker);
                 }               
             }          
-            gMap.Overlays.Add(overlay);*/
+            gMap.Overlays.Add(overlay);
+            */
         }
 
         private void gMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
@@ -70,7 +72,8 @@ namespace AirportsTracking
 
         private void buttonRoute_Click(object sender, EventArgs e)
         {
-            /*gMap.MapProvider = GMapProviders.GoogleMap;
+            /*
+            gMap.MapProvider = GMapProviders.GoogleMap;
 
             overlay.Markers.Clear();
             overlay.Polygons.Clear();
@@ -80,7 +83,7 @@ namespace AirportsTracking
             string IATA1 = textBoxIATA1.Text;
             string IATA2 = textBoxIATA2.Text;
 
-            airList = AStar.AStarMinPath(IATA1, IATA2);
+            //airList = AStar.AStarMinPath(IATA1, IATA2);
             for (int i = 0; i < airList.Count; i++)
                 allAirports.Add(airList[i].Current);
 
@@ -98,7 +101,7 @@ namespace AirportsTracking
             airports[0].Latitude = 25.2527999878;
             airports[0].Longitude = 55.3643989563;
 
-            airports[1].AirportId = "3797";
+           airports[1].AirportId = "3797";
             airports[1].AirportName = "John F Kennedy International Airport";
             airports[1].CityName = "New York";
             airports[1].CountryName = "United States";
@@ -143,8 +146,8 @@ namespace AirportsTracking
                     overlay.Polygons.Add(polygon);
                 }
             }
-            gMap.Overlays.Add(overlay);
-            */
+            gMap.Overlays.Add(overlay);*/
         }
+
     }
 }
