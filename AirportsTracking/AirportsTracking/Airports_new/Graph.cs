@@ -74,7 +74,6 @@ namespace AirportsTracking
         {
             try
             {
-                AirlineData.LoadData();
                 var watch = Stopwatch.StartNew();
                 var priotityQueue = new Queue<NextAirport>();
                 List<string> visited = new List<string>();
@@ -161,7 +160,6 @@ namespace AirportsTracking
             try
             {
                 var watch = Stopwatch.StartNew();
-                AirlineData.LoadData();
                 Airport source = AirlineData.GetAirPort(sourceID);
                 var next = AirlineData.GetNextStation(sourceID);
                 var que = new Queue<NextAirport>();
@@ -237,7 +235,6 @@ namespace AirportsTracking
         protected static internal List<NextAirport> AStarMinPath(string sourceID, string destinationID)
         {
             // отримуємо найкоротший шлях від аеропорта А до аеропорта Б
-            AirlineData.LoadData();
 
             NextAirport neighbourNode1;
 

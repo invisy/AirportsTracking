@@ -33,7 +33,7 @@ namespace AirportsTracking
                         temp[3] = FindIDByIATA(temp[2]);
                     if (temp[5] == "\\N")
                         temp[5] = FindIDByIATA(temp[4]);
-                    if (temp[3] != null || temp[5] != null)
+                    if (temp[3] != null && temp[5] != null)
                     {
                         Route route = new Route(temp[5], temp[7]);
                         if (DictOfAirports.ContainsKey(temp[3]) && DictOfAirports.ContainsKey(temp[5]))
@@ -41,11 +41,10 @@ namespace AirportsTracking
                     }
                 }
             }
-            catch (ArgumentException a)
+            catch(Exception e)
             {
-                Console.WriteLine(a.Message);
+                Console.WriteLine("LOADING ERROR!!!!: " + e.Message);
             }
-            // return null;
         }
         protected internal static string[] GetAllInfoFromFile(string resource)
         {

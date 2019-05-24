@@ -120,7 +120,15 @@ namespace AirportsTracking
             for (int i = 0; i < allAirports.Count; i++)
             {
                 List<PointLatLng> points = new List<PointLatLng>();
-                if (i == 0)
+                if (i == allAirports.Count - 1)
+                {
+                    points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));
+
+                    GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.red_dot);
+                    marker.ToolTipText = Convert.ToString(i);
+                    overlay.Markers.Add(marker);
+                }
+                else if (i == 0)
                 {
                     points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));
                     points.Add(new PointLatLng(allAirports[i + 1].Latitude, allAirports[i + 1].Longitude));
@@ -132,14 +140,7 @@ namespace AirportsTracking
                     var polygon = new GMapPolygon(points, "line");
                     overlay.Polygons.Add(polygon);
                 }
-                else if (i == allAirports.Count - 1)
-                {
-                    points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));
-
-                    GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.red_dot);
-                    marker.ToolTipText = Convert.ToString(i);
-                    overlay.Markers.Add(marker);
-                }
+                
                 else
                 {
                     points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));

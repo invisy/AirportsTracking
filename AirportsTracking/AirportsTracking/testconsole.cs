@@ -23,11 +23,13 @@ namespace AirportsTracking
         static void ALGORITMxD()
         {
             AirlineData.LoadData();               //ОБОВ'ЯЗКОВО!
-             /*Console.WriteLine("     A*:");
-             AStar.AStarMinPath("3462", "246");
-             Console.WriteLine("     Dijkstra:");
-             Graph.DijkstraMinPath("3462", "246"); //   PHX OUA interesting test  3462 ->>>3682 ->>>302 ->>>246 ->>>
-             */
+            Console.WriteLine("Data is Loaded.");
+
+            /*Console.WriteLine("     A*:");
+            AStar.AStarMinPath("3462", "246");
+            Console.WriteLine("     Dijkstra:");
+            Graph.DijkstraMinPath("3462", "246"); //   PHX OUA interesting test  3462 ->>>3682 ->>>302 ->>>246 ->>>
+            */
             /*Console.WriteLine("     A*:");
             AStar.AStarMinPath("340", "13671");
             Console.WriteLine("     Dijkstra:");
@@ -39,6 +41,7 @@ namespace AirportsTracking
             //AStar.AStarMinPath("3797", "3339");
             //AStar.AStarMinPath("1", "3"); //GKA HGU
             //Graph.DijkstraMinPath("1", "8");
+            Console.WriteLine("Click Enter to load Form");
             Console.Read();
         }
     }
