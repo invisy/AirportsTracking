@@ -11,7 +11,6 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using Airports;
 
 namespace AirportsTracking
 {
@@ -30,7 +29,7 @@ namespace AirportsTracking
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            gMap.MapProvider = GMapProviders.GoogleMap;
+           /* gMap.MapProvider = GMapProviders.GoogleMap;
 
             allAirports.Clear();
             overlay.Markers.Clear();
@@ -58,7 +57,7 @@ namespace AirportsTracking
                     overlay.Markers.Add(marker);
                 }               
             }          
-            gMap.Overlays.Add(overlay);
+            gMap.Overlays.Add(overlay);*/
         }
 
         private void gMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
@@ -71,7 +70,7 @@ namespace AirportsTracking
 
         private void buttonRoute_Click(object sender, EventArgs e)
         {
-            gMap.MapProvider = GMapProviders.GoogleMap;
+            /*gMap.MapProvider = GMapProviders.GoogleMap;
 
             overlay.Markers.Clear();
             overlay.Polygons.Clear();
@@ -145,6 +144,7 @@ namespace AirportsTracking
                 }
             }
             gMap.Overlays.Add(overlay);
+            */
         }
     }
 }
