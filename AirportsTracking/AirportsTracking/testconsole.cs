@@ -22,11 +22,12 @@ namespace AirportsTracking
 
         static void ALGORITMxD()
         {
-            Console.WriteLine("     A*:");
+            AirlineData.LoadData();               //ОБОВ'ЯЗКОВО!
+             /*Console.WriteLine("     A*:");
              AStar.AStarMinPath("3462", "246");
              Console.WriteLine("     Dijkstra:");
              Graph.DijkstraMinPath("3462", "246"); //   PHX OUA interesting test  3462 ->>>3682 ->>>302 ->>>246 ->>>
-
+             */
             /*Console.WriteLine("     A*:");
             AStar.AStarMinPath("340", "13671");
             Console.WriteLine("     Dijkstra:");

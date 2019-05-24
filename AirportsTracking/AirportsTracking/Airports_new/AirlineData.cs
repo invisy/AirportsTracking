@@ -10,7 +10,6 @@ namespace AirportsTracking
     {
         const string airports_path = "Resources/airports.txt";
         const string routs_path = "Resources/routes.txt";
-        static public bool dataIsLoaded = false;
         protected internal static Dictionary<string, Airport> DictOfAirports { get; set; }
         static public void LoadData()
         {
@@ -31,17 +30,16 @@ namespace AirportsTracking
                 {
                     string[] temp = ParseLine(line);
                     if (temp[3] == "\\N")
-                        temp[3] = FindBrokenID(temp[2]);
+                        temp[3] = FindIDByIATA(temp[2]);
                     if (temp[5] == "\\N")
-                        temp[5] = FindBrokenID(temp[4]);
-                    if (temp[3] != "" || temp[5] != "")
+                        temp[5] = FindIDByIATA(temp[4]);
+                    if (temp[3] != null || temp[5] != null)
                     {
                         Route route = new Route(temp[5], temp[7]);
                         if (DictOfAirports.ContainsKey(temp[3]) && DictOfAirports.ContainsKey(temp[5]))
                             DictOfAirports[temp[3]].routes.AddLast(route);
                     }
                 }
-                dataIsLoaded = true;
             }
             catch (ArgumentException a)
             {
@@ -49,7 +47,6 @@ namespace AirportsTracking
             }
             // return null;
         }
-
         protected internal static string[] GetAllInfoFromFile(string resource)
         {
             try
@@ -101,14 +98,14 @@ namespace AirportsTracking
             return result.ToArray();
         }
 
-        protected internal static string FindBrokenID(string code)
+        protected internal static string FindIDByIATA(string code)
         {
             foreach(KeyValuePair<String, Airport> curr in DictOfAirports)
             {
                 if (curr.Value.IATA == code)
                     return curr.Key;
             }
-            return String.Empty;
+            return null;
         }
 
         protected internal static Airport GetAirPort(string code)
@@ -126,6 +123,19 @@ namespace AirportsTracking
             }
             else
                 return null;
+        }
+
+        protected static internal List<Airport> ReturnListOfAirportsBy2City(string city1, string city2)
+        {
+            var list = new List<Airport>();
+            foreach (var airport in DictOfAirports)
+            {
+                if (airport.Value.CityName == city1 || airport.Value.CityName == city2)
+                {
+                    list.Add(airport.Value);
+                }
+            }
+            return list;
         }
     }
 }

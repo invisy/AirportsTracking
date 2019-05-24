@@ -74,8 +74,7 @@ namespace AirportsTracking
         {
             try
             {
-                if(!AirlineData.dataIsLoaded)
-                    AirlineData.LoadData();
+                AirlineData.LoadData();
                 var watch = Stopwatch.StartNew();
                 var priotityQueue = new Queue<NextAirport>();
                 List<string> visited = new List<string>();
@@ -162,8 +161,7 @@ namespace AirportsTracking
             try
             {
                 var watch = Stopwatch.StartNew();
-                if (!AirlineData.dataIsLoaded)
-                    AirlineData.LoadData();
+                AirlineData.LoadData();
                 Airport source = AirlineData.GetAirPort(sourceID);
                 var next = AirlineData.GetNextStation(sourceID);
                 var que = new Queue<NextAirport>();
@@ -236,11 +234,10 @@ namespace AirportsTracking
             return distance;
         }
 
-        protected static internal void AStarMinPath(string sourceID, string destinationID)
+        protected static internal List<NextAirport> AStarMinPath(string sourceID, string destinationID)
         {
-            // отримуємо найкоротший шлях від аеропорта А до аеропорта Б 
-            if (!AirlineData.dataIsLoaded)
-                AirlineData.LoadData();
+            // отримуємо найкоротший шлях від аеропорта А до аеропорта Б
+            AirlineData.LoadData();
 
             NextAirport neighbourNode1;
 
@@ -267,8 +264,7 @@ namespace AirportsTracking
                 {
                     Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
                     Console.WriteLine($"There is the way from {AStar.Source.Current.AirportName} to {AStar.Destination.Current.AirportName} ");
-                    ReturnMinPath(currentAirport);
-                    return;
+                    return ReturnMinPath(currentAirport);
                 }
 
                 closedSet.Enqueue(currentAirport);
@@ -298,12 +294,12 @@ namespace AirportsTracking
             Console.WriteLine($"There is no way from airport with name {AStar.Source.Current.AirportName} to airport {AStar.Destination.Current.AirportName}");
             Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
 
-            return;
+            return null;
         }
 
-        protected static internal void ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
+        protected static internal List<NextAirport> ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
         {
-            var result = new List<NextAirport>();
+            List<NextAirport> result = new List<NextAirport>();
             var currentNode = pathNode;
             Console.WriteLine(currentNode.PathLengthFromStart);
             result.Add(pathNode);
@@ -318,6 +314,7 @@ namespace AirportsTracking
             foreach (var x in result)
                 Console.Write($" {x.Current.ID} ->>>");
             Console.WriteLine();
+            return result;
         }
 
     }
