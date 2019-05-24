@@ -77,10 +77,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Airports\AirlineData.cs" />
-    <Compile Include="Airports\Airport.cs" />
-    <Compile Include="Airports\Graph.cs" />
-    <Compile Include="Airports\Route.cs" />
+    <Compile Include="Airports_new\AirlineData.cs" />
+    <Compile Include="Airports_new\Airport.cs" />
+    <Compile Include="Airports_new\Graph.cs" />
+    <Compile Include="Airports_new\Route.cs" />
+    <Compile Include="Airports_old\AirlineData.cs" />
+    <Compile Include="Airports_old\Airport.cs" />
+    <Compile Include="Airports_old\Graph.cs" />
+    <Compile Include="Airports_old\Route.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

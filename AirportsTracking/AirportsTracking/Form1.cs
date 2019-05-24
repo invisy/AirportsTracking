@@ -12,13 +12,13 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 //using Deikstra_and_AStar;
-using Airports;
+//using Airports;
 
 namespace AirportsTracking
 {
     public partial class Form1 : Form
     {
-        private List<NextAirport> airports; 
+        //private List<NextAirport> airports; 
 
         public Form1()
         {
@@ -28,7 +28,7 @@ namespace AirportsTracking
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            Graph.DijkstraMinPath("DME", "LAS");
+            //Graph.DijkstraMinPath("DME", "LAS");
             // AStar.AStarMinPath("DME", "LAS"); затестіть, чи працює алгоритм
             // якщо що, кажіть
 

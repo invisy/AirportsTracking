@@ -7,10 +7,10 @@ using System.Linq;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Airports
+namespace Airport_old
 {
-   public class NextAirport
-   {  
+    public class NextAirport
+    {
         public Airport Current { get; set; }
         public string IATA { get; set; }
         public string Name { get; set; }
@@ -88,7 +88,7 @@ namespace Airports
                 AirlineData.LoadData();
                 var dictOfNeighboursByCode = AirlineData.DictOfNeighbours;
                 var watch = Stopwatch.StartNew();
-                var priotityQueue  = new Queue<NextAirport>();
+                var priotityQueue = new Queue<NextAirport>();
                 List<string> visited = new List<string>();
                 var path = new Dictionary<NextAirport, NextAirport>();
                 Airport source = AirlineData.GetAirPort(sourceCode);
@@ -97,7 +97,7 @@ namespace Airports
                 priotityQueue.Enqueue(next);
                 Graph.Source = next;
                 double BestPrice = 0;
-   
+
                 path[next] = null;
                 while (priotityQueue.Count > 0)
                 {
@@ -111,7 +111,7 @@ namespace Airports
                         Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
                         Console.WriteLine("Count of visited vertices = {0}", visited.Count);
                         ReturnMinPath();
-                        
+
                         return;
                     }
                     visited.Add(_flight.IATA);
@@ -126,7 +126,7 @@ namespace Airports
                             {
                                 var best = GetPriceByPath(_flight.IATA, neighbour.IATA) + _flight.Weight;//maybe best price
                                 if (best < _next.Weight)
-                                {   
+                                {
                                     _next.Weight = best;
                                     priotityQueue.Enqueue(_next);
                                     path[_next] = _flight;
@@ -145,32 +145,32 @@ namespace Airports
                 Console.WriteLine(r);
             }
 
-        
+
         }
         protected static internal void ReturnMinPath()
         {
-           
+
             List<NextAirport> result = new List<NextAirport>();
             var current = Destination;
             result.Add(current);
-            while (current!= Source)
+            while (current != Source)
             {
                 current = Path[current];
-                result.Add(current);              
+                result.Add(current);
             }
             Console.WriteLine("From airport with code {0} and name {1}  " +
                 "to airport  {2} and name {3}\n you can get with the best price {4}",
                 Source.IATA, Source.Current.AirportName, Destination.IATA, Destination.Name, Destination.Weight);
             Console.WriteLine(" Count of vetrices between two vertices = {0}", result.Count);
             Console.WriteLine("Path with minimal cost: ");
-            for (int i = result.Count-1; i >= 0; i--)
-                MessageBox.Show(result[i].IATA +" ->>>");
-           
-           
-           
+            for (int i = result.Count - 1; i >= 0; i--)
+                MessageBox.Show(result[i].IATA + " ->>>");
+
+
+
 
         }
-     
+
         protected static internal void SearchPointsWithBfs(string sourceCode, string searchCode)
         {
             try
@@ -185,11 +185,11 @@ namespace Airports
                 que.Enqueue(next);
                 visited.Add(source);
                 var counter = 0;
-                while(que.Count>0)
+                while (que.Count > 0)
                 {
                     var vertex = que.Dequeue();
                     if (vertex.IATA == searchCode)
-                    {                
+                    {
                         watch.Stop();
                         Console.WriteLine("Airport with code {0} and name {1} finded from start airport {2}", vertex.IATA, vertex.Current.AirportName, sourceCode);
                         Console.WriteLine("Count of vetrices between two vertices = {0}", counter);
@@ -197,7 +197,7 @@ namespace Airports
                         Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
                         return;
                     }
-                    foreach(var neighbour in vertex.adjacementList)
+                    foreach (var neighbour in vertex.adjacementList)
                     {
                         if (neighbour != null)
                         {
@@ -209,21 +209,21 @@ namespace Airports
                             }
                         }
                     }
-        
-                }      
+
+                }
             }
             catch (Exception r)
             {
                 Console.WriteLine(r);
             }
-           
+
         }
-        
-        protected static internal void SortQueue( ref Queue<NextAirport> queue)
+
+        protected static internal void SortQueue(ref Queue<NextAirport> queue)
         {
 
             queue.OrderBy(d => d.Weight);
-           
+
         }
     }
 
@@ -270,7 +270,7 @@ namespace Airports
             openSet.Enqueue(next);
             while (openSet.Count > 0)
             {
-                var currentAirport = openSet.OrderBy( node => node.EstimateFullPathLength).First();
+                var currentAirport = openSet.OrderBy(node => node.EstimateFullPathLength).First();
                 if (currentAirport.Current.IATA == destinationCode)
                 {
                     //Console.WriteLine("SUCCESS!");
@@ -281,7 +281,7 @@ namespace Airports
                     // ReturnMinPath();                   
                 }
                 var x = openSet.Dequeue(); // openSet.(currentAirport);
-               // Console.WriteLine($"{x.IATA} ------- {x.Current.CountryName}");
+                                           // Console.WriteLine($"{x.IATA} ------- {x.Current.CountryName}");
                 closedSet.Enqueue(x);
                 //Console.WriteLine($"Number of neighbours ={currentAirport.adjacementList.Count}");
                 foreach (var neighbourNode in currentAirport.adjacementList)
@@ -292,7 +292,7 @@ namespace Airports
                     //neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(neighbourNode.IATA)); // виглядає правильніше, працює довше, результат коректний
                     neighbourNode1.HeuristicEstimatePathLength = GetPath(neighbourNode1.Current, AirlineData.GetAirPort(destinationCode));
 
-                    if (closedSet.Count( node => node.IATA == neighbourNode1.IATA) > 0)
+                    if (closedSet.Count(node => node.IATA == neighbourNode1.IATA) > 0)
                     {
                         continue;
                     }
@@ -308,7 +308,7 @@ namespace Airports
                             openNode.PathLengthFromStart = neighbourNode1.PathLengthFromStart;
                         }
                     }
-                    
+
                 }
             }
             Console.WriteLine($"There is no way from airport with name {source.AirportName} to airport {AirlineData.GetAirPort(destinationCode).AirportName}");
@@ -320,7 +320,7 @@ namespace Airports
             var result = new List<NextAirport>();
             var currentNode = pathNode;
             result.Add(pathNode);
-            while(currentNode != null)
+            while (currentNode != null)
             {
                 result.Add(currentNode.previous);
                 currentNode = currentNode.previous;

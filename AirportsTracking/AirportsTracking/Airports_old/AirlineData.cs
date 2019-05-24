@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Airports
+namespace Airport_old
 {
-
-
-
     public class AirlineData
     {
         protected internal static List<Route> listOfRoutes = new List<Route>();
@@ -47,7 +44,7 @@ namespace Airports
             var list = new List<Airport>();
             Airports = GetAllInfoFromFile("Resources/airports.txt");
             var allAirports = GetAirPort();
-            foreach(var airport in allAirports)
+            foreach (var airport in allAirports)
             {
                 if (airport.CityName == cityOne || airport.CityName == cityTwo)
                 {
@@ -56,7 +53,7 @@ namespace Airports
             }
             return list;
         }
-    
+
         protected static internal Airport CreateAirport(string[] temp)
         {
             airport = new Airport(temp);
@@ -72,10 +69,10 @@ namespace Airports
                 foreach (var line in Airports)
                 {
                     string[] temp = line.Replace("\"", "").Split(",".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
-                        var airport = CreateAirport(temp);
-                    if(airport!= null)
+                    var airport = CreateAirport(temp);
+                    if (airport != null)
                         listOfAirports.Add(airport);
-                    
+
                 }
                 return listOfAirports;
             }
@@ -85,7 +82,6 @@ namespace Airports
             }
             return null;
         }
-        //reee
         protected static internal List<Route> GetRoutes()
         {
             try
@@ -133,9 +129,7 @@ namespace Airports
             {
                 Console.WriteLine(a.Message);
             }
-           // return null;
         }
-        //reee
         protected static internal List<Route> GetRoutes(string codeName)
         {
             try
@@ -153,7 +147,6 @@ namespace Airports
             }
             return null;
         }
-        //reeee
         protected static internal LinkedList<Airport> GetNeighbours(string codeName, List<Route> routes)
         {
             try
@@ -161,7 +154,7 @@ namespace Airports
                 LinkedList<Airport> neighbours = new LinkedList<Airport>();
                 foreach (var port in routes)
                 {
-                    if ( port != null && port.SourceName == codeName)
+                    if (port != null && port.SourceName == codeName)
                     {
                         var next = GetAirPort(port.DestinationName);
 
@@ -184,8 +177,6 @@ namespace Airports
             }
             return null;
         }
-
-        //reeeee
         protected internal static void WriteCsw()
         {
             try
@@ -213,7 +204,6 @@ namespace Airports
                 Console.WriteLine(a.Message);
             }
         }
-        //raeeaeee
         protected internal static NextAirport GetNextStation(string stationCode)
         {
             try
@@ -221,15 +211,15 @@ namespace Airports
                 foreach (var line in Neighbours)
                 {
                     string[] temp = line.Split(";".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
-                        if (temp.Length==3 && temp[0] == stationCode)
-                        {
+                    if (temp.Length == 3 && temp[0] == stationCode)
+                    {
                         var airport = GetAirPort(temp[0]);
                         if (airport != null)
                         {
                             NextAirport nextAirport = new NextAirport(airport, temp[1], int.MaxValue, JsonConvert.DeserializeObject<LinkedList<Airport>>(temp[2]));
                             return nextAirport;
                         }
-                        }
+                    }
                 }
             }
             catch (Exception a)
@@ -239,7 +229,7 @@ namespace Airports
             return null;
 
         }
-        protected internal static string[] GetAllInfoFromFile( string resource)
+        protected internal static string[] GetAllInfoFromFile(string resource)
         {
             try
             {
@@ -260,6 +250,3 @@ namespace Airports
         }
     }
 }
- 
-
-    
