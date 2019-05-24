@@ -12,8 +12,6 @@ namespace AirportsTracking
     public class NextAirport
     {
         public Airport Current { get; set; }
-        public string ID { get; set; }
-        public string Name { get; set; }
         public double Weight { get; set; }
         public NextAirport previous { get; set; } // точка з якої прийшли
         public LinkedList<Route> adjacementList = new LinkedList<Route>(); // список сусідніх аеропортів
@@ -29,8 +27,6 @@ namespace AirportsTracking
         public NextAirport(Airport cur, string name, double price, LinkedList<Route> nextPorts)
         {
             Current = cur;
-            ID = cur.ID;
-            Name = name;
             Weight = price;
             adjacementList = nextPorts;
         }
@@ -106,14 +102,14 @@ namespace AirportsTracking
 
                         return;
                     }
-                    visited.Add(_flight.ID);
+                    visited.Add(_flight.Current.ID);
 
                     foreach (var neighbour in _flight.adjacementList)
                     {
                         NextAirport _next = AirlineData.GetNextStation(neighbour.DestinationId); ;
                         if (!visited.Contains(neighbour.DestinationId) && _next != null)
                         {
-                            var best = GetPriceByPath(_flight.ID, neighbour.DestinationId) + _flight.Weight;//maybe best price
+                            var best = GetPriceByPath(_flight.Current.ID, neighbour.DestinationId) + _flight.Weight;//maybe best price
                             if (best < _next.Weight)
                             {
                                 _next.Weight = best;
@@ -148,11 +144,11 @@ namespace AirportsTracking
             }
             Console.WriteLine("From airport with code {0} and name {1}  " +
                 "to airport  {2} and name {3}\n you can get with the best price {4}",
-                Source.ID, Source.Current.AirportName, Destination.ID, Destination.Name, Destination.Weight);
+                Source.Current.ID, Source.Current.AirportName, Destination.Current.ID, Destination.Current.AirportName, Destination.Weight/32.0);
             Console.WriteLine(" Count of vetrices between two vertices = {0}", result.Count);
             Console.WriteLine("Path with minimal cost: ");
             for (int i = result.Count - 1; i >= 0; i--)
-                Console.Write(result[i].ID + " ->>>");
+                Console.Write(result[i].Current.ID + " ->>>");
             Console.WriteLine();
 
 
@@ -176,10 +172,10 @@ namespace AirportsTracking
                 while (que.Count > 0)
                 {
                     var vertex = que.Dequeue();
-                    if (vertex.ID == searchID)
+                    if (vertex.Current.ID == searchID)
                     {
                         watch.Stop();
-                        Console.WriteLine("Airport with code {0} and name {1} finded from start airport {2}", vertex.ID, vertex.Current.AirportName, sourceID);
+                        Console.WriteLine("Airport with code {0} and name {1} finded from start airport {2}", vertex.Current.ID, vertex.Current.AirportName, sourceID);
                         Console.WriteLine("Count of vetrices between two vertices = {0}", counter);
                         Console.WriteLine("Count of visited vertices = {0}", visited.Count);
                         Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
@@ -243,65 +239,62 @@ namespace AirportsTracking
             // отримуємо найкоротший шлях від аеропорта А до аеропорта Б 
             AirlineData.LoadData();
 
+            NextAirport neighbourNode1;
+
             var watch = Stopwatch.StartNew();
             var closedSet = new Queue<NextAirport>();
             var openSet = new Queue<NextAirport>();
 
-            Airport source = AirlineData.GetAirPort(sourceID);
-            var next = AirlineData.GetNextStation(sourceID);
-            AStar.Source = next;
-            var qq = AirlineData.GetAirPort(destinationID);
-            next.HeuristicEstimatePathLength = GetPath(source, qq);
-            next.previous = null;
-            next.PathLengthFromStart = 0;
-            next.HeuristicEstimatePathLength = GetPath(source, AirlineData.GetAirPort(destinationID));
+            AStar.Source = AirlineData.GetNextStation(sourceID);
+            AStar.Destination = AirlineData.GetNextStation(destinationID);
 
-            openSet.Enqueue(next);
+            AStar.Source.previous = null;
+            AStar.Source.PathLengthFromStart = 0;
+            AStar.Source.HeuristicEstimatePathLength = GetPath(AStar.Source.Current, AStar.Destination.Current);
 
-            Console.WriteLine($"Start searching path from {source.AirportName} to {AirlineData.GetAirPort(destinationID).AirportName} ");
+            openSet.Enqueue(AStar.Source);
+
+            // Console.WriteLine($"Start searching path from {AStar.Source.Current.AirportName} to {AStar.Destination.Current.AirportName} ");
             while (openSet.Count > 0)
             {
                 var currentAirport = openSet.OrderBy(node => node.EstimateFullPathLength).First();
-                if (currentAirport.Current.ID == destinationID)
+                currentAirport = openSet.Dequeue();
+
+                if (currentAirport.Current.ID == destinationID) // mccarran
                 {
-                    //Console.WriteLine("SUCCESS!");
                     Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
-                    Console.WriteLine($"There is the way from {source.AirportName} to {AirlineData.GetAirPort(destinationID).AirportName} ");
+                    Console.WriteLine($"There is the way from {AStar.Source.Current.AirportName} to {AStar.Destination.Current.AirportName} ");
                     ReturnMinPath(currentAirport);
                     return;
-                    // ReturnMinPath();                   
                 }
-                var x = openSet.Dequeue(); // openSet.(currentAirport);
-                                           // Console.WriteLine($"{x.ITA} ------- {x.Current.CountryName}");
-                closedSet.Enqueue(x);
-                //Console.WriteLine($"Number of neighbours ={currentAirport.adjacementList.Count}");
-                foreach (var neighbourNode in currentAirport.adjacementList)
-                {
-                    var neighbourNode1 = AirlineData.GetNextStation(neighbourNode.DestinationId);
+
+                closedSet.Enqueue(currentAirport);
+
+                foreach (var neighbourAirport in currentAirport.adjacementList)
+                {                    
+                    neighbourNode1 = AirlineData.GetNextStation(neighbourAirport.DestinationId);
+                    
+                    if (closedSet.Count(node => node.Current.ID == neighbourNode1.Current.ID) > 0)
+                         continue;
+
+                    double temp_PathLenghtFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, neighbourNode1.Current);                                                                                                                                                     // neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(neighbourNode.ITA)); // виглядає правильніше, працює довше, результат коректний
+
+                    var openNode = openSet.FirstOrDefault(node => node.Current.ID == neighbourNode1.Current.ID);
+                    if (openNode == null || temp_PathLenghtFromStart <= neighbourNode1.PathLengthFromStart)
+                    {
                         neighbourNode1.previous = currentAirport;
-                        neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(destinationID)); // результат не коректний , neighbourNode.ID не працює
-                                                                                                                                                                         //neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(neighbourNode.ITA)); // виглядає правильніше, працює довше, результат коректний
-                    neighbourNode1.HeuristicEstimatePathLength = GetPath(neighbourNode1.Current, AirlineData.GetAirPort(destinationID));
+                        neighbourNode1.PathLengthFromStart = temp_PathLenghtFromStart;
+                        neighbourNode1.HeuristicEstimatePathLength = GetPath(neighbourNode1.Current, AStar.Destination.Current);
+                    }
+                    if (openNode == null)
+                        openSet.Enqueue(neighbourNode1);
 
-                        if (closedSet.Count(node => node.ID == neighbourNode1.ID) > 0)
-                        {
-                            continue;
-                        }
-                        var openNode = openSet.FirstOrDefault(node => node.ID == neighbourNode1.ID);
-                        if (openNode == null)
-                            openSet.Enqueue(neighbourNode1);
-
-                        else
-                        {
-                            if (openNode.PathLengthFromStart > neighbourNode1.PathLengthFromStart)
-                            {
-                                openNode.previous = currentAirport;
-                                openNode.PathLengthFromStart = neighbourNode1.PathLengthFromStart;
-                            }
-                        }
                 }
+
             }
-            Console.WriteLine($"There is no way from airport with name {source.AirportName} to airport {AirlineData.GetAirPort(destinationID).AirportName}");
+            Console.WriteLine($"There is no way from airport with name {AStar.Source.Current.AirportName} to airport {AStar.Destination.Current.AirportName}");
+            Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
+
             return;
         }
 
@@ -309,16 +302,19 @@ namespace AirportsTracking
         {
             var result = new List<NextAirport>();
             var currentNode = pathNode;
+            Console.WriteLine(currentNode.PathLengthFromStart);
             result.Add(pathNode);
             while (currentNode != null)
             {
                 result.Add(currentNode.previous);
                 currentNode = currentNode.previous;
             }
+
             result.Reverse();
             result.RemoveAt(0);
             foreach (var x in result)
-                Console.Write($" {x.ID} ->>>");
+                Console.Write($" {x.Current.ID} ->>>");
+            Console.WriteLine();
         }
 
     }
