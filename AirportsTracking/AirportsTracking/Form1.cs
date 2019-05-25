@@ -25,12 +25,14 @@ namespace AirportsTracking
             AirlineData.LoadData();
             GMapProviders.GoogleMap.ApiKey = @"AIzaSyAPFEPeEVq_ECcRp6lcWzh-zpmyJG6nQKo";
             InitializeComponent();
+
+            gMap.MapProvider = GMapProviders.GoogleMap;
+            gMap.ShowCenter = false;
+            gMap.Position = new PointLatLng(25, 35);
         }
 
         private void buttonCalc_Click(object sender, EventArgs e)
         {
-            gMap.MapProvider = GMapProviders.GoogleMap;
-
             allAirports.Clear();
             overlay.Markers.Clear();
             overlay.Polygons.Clear();
