@@ -14,8 +14,6 @@ namespace AirportsTracking
         [STAThread]
         static void Main()
         {
-            testConsole.AllocConsole(); //ONLY FOR TEST
-            testConsole.MainDebug();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

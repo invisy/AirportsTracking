@@ -24,7 +24,8 @@ namespace AirportsTracking
                     string[] temp = ParseLine(line);
                     LinkedList<Route> routes = new LinkedList<Route>();
                     var airport = new Airport(temp, routes);
-                    DictOfAirports.Add(airport.ID, airport);
+                    if(airport.IATA != "\\N")
+                        DictOfAirports.Add(airport.ID, airport);
                 }
                 foreach (var line in Routes_str)
                 {

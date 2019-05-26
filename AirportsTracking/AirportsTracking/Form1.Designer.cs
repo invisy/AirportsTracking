@@ -37,7 +37,9 @@
             this.buttonRoute = new System.Windows.Forms.Button();
             this.textBoxIATA2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxCity2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxCity1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonCalc = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxCity1 = new System.Windows.Forms.ComboBox();
-            this.comboBoxCity2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +67,7 @@
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -81,8 +82,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1262, 675);
-            this.splitContainer1.SplitterDistance = 847;
+            this.splitContainer1.Size = new System.Drawing.Size(946, 553);
+            this.splitContainer1.SplitterDistance = 532;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
             // gMap
@@ -97,7 +99,8 @@
             this.gMap.GrayScaleMode = false;
             this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap.LevelsKeepInMemmory = 5;
-            this.gMap.Location = new System.Drawing.Point(12, 12);
+            this.gMap.Location = new System.Drawing.Point(9, 10);
+            this.gMap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gMap.MarkersEnabled = true;
             this.gMap.MaxZoom = 18;
             this.gMap.MinZoom = 2;
@@ -111,7 +114,7 @@
             this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap.ShowTileGridLines = false;
-            this.gMap.Size = new System.Drawing.Size(832, 651);
+            this.gMap.Size = new System.Drawing.Size(521, 534);
             this.gMap.TabIndex = 0;
             this.gMap.Zoom = 0D;
             this.gMap.OnMarkerClick += new GMap.NET.WindowsForms.MarkerClick(this.gMap_OnMarkerClick);
@@ -126,9 +129,11 @@
             this.groupBox2.Controls.Add(this.textBoxIATA2);
             this.groupBox2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(69, 217);
+            this.groupBox2.Location = new System.Drawing.Point(103, 176);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(305, 181);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(229, 147);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Calculate";
@@ -136,9 +141,10 @@
             // textBoxIATA1
             // 
             this.textBoxIATA1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBoxIATA1.Location = new System.Drawing.Point(143, 43);
+            this.textBoxIATA1.Location = new System.Drawing.Point(107, 35);
+            this.textBoxIATA1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxIATA1.Name = "textBoxIATA1";
-            this.textBoxIATA1.Size = new System.Drawing.Size(100, 29);
+            this.textBoxIATA1.Size = new System.Drawing.Size(76, 25);
             this.textBoxIATA1.TabIndex = 3;
             // 
             // label8
@@ -148,9 +154,10 @@
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label8.Location = new System.Drawing.Point(29, 40);
+            this.label8.Location = new System.Drawing.Point(22, 32);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 25);
+            this.label8.Size = new System.Drawing.Size(87, 21);
             this.label8.TabIndex = 1;
             this.label8.Text = "IATA 1 :";
             // 
@@ -161,9 +168,10 @@
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label9.Location = new System.Drawing.Point(28, 65);
+            this.label9.Location = new System.Drawing.Point(21, 53);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 25);
+            this.label9.Size = new System.Drawing.Size(87, 21);
             this.label9.TabIndex = 2;
             this.label9.Text = "IATA 2 :";
             // 
@@ -172,9 +180,10 @@
             this.buttonRoute.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.buttonRoute.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRoute.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonRoute.Location = new System.Drawing.Point(72, 107);
+            this.buttonRoute.Location = new System.Drawing.Point(54, 87);
+            this.buttonRoute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonRoute.Name = "buttonRoute";
-            this.buttonRoute.Size = new System.Drawing.Size(150, 48);
+            this.buttonRoute.Size = new System.Drawing.Size(112, 39);
             this.buttonRoute.TabIndex = 5;
             this.buttonRoute.Text = "Calculate Route";
             this.buttonRoute.UseVisualStyleBackColor = true;
@@ -183,27 +192,39 @@
             // textBoxIATA2
             // 
             this.textBoxIATA2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBoxIATA2.Location = new System.Drawing.Point(143, 67);
+            this.textBoxIATA2.Location = new System.Drawing.Point(107, 54);
+            this.textBoxIATA2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxIATA2.Name = "textBoxIATA2";
-            this.textBoxIATA2.Size = new System.Drawing.Size(100, 29);
+            this.textBoxIATA2.Size = new System.Drawing.Size(76, 25);
             this.textBoxIATA2.TabIndex = 4;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox1.Controls.Add(this.comboBoxCity2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBoxCity1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonCalc);
+            this.groupBox1.Controls.Add(this.comboBoxCity2);
             this.groupBox1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(69, 12);
+            this.groupBox1.Location = new System.Drawing.Point(103, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 180);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(229, 146);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
+            // 
+            // comboBoxCity2
+            // 
+            this.comboBoxCity2.FormattingEnabled = true;
+            this.comboBoxCity2.Location = new System.Drawing.Point(91, 53);
+            this.comboBoxCity2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxCity2.Name = "comboBoxCity2";
+            this.comboBoxCity2.Size = new System.Drawing.Size(92, 26);
+            this.comboBoxCity2.TabIndex = 2;
             // 
             // label1
             // 
@@ -212,11 +233,21 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label1.Location = new System.Drawing.Point(26, 40);
+            this.label1.Location = new System.Drawing.Point(20, 32);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 25);
+            this.label1.Size = new System.Drawing.Size(72, 21);
             this.label1.TabIndex = 1;
             this.label1.Text = "City 1 :";
+            // 
+            // comboBoxCity1
+            // 
+            this.comboBoxCity1.FormattingEnabled = true;
+            this.comboBoxCity1.Location = new System.Drawing.Point(91, 32);
+            this.comboBoxCity1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxCity1.Name = "comboBoxCity1";
+            this.comboBoxCity1.Size = new System.Drawing.Size(92, 26);
+            this.comboBoxCity1.TabIndex = 1;
             // 
             // label2
             // 
@@ -225,9 +256,10 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label2.Location = new System.Drawing.Point(26, 65);
+            this.label2.Location = new System.Drawing.Point(20, 53);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 25);
+            this.label2.Size = new System.Drawing.Size(72, 21);
             this.label2.TabIndex = 2;
             this.label2.Text = "City 2 :";
             // 
@@ -236,9 +268,10 @@
             this.buttonCalc.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.buttonCalc.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCalc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonCalc.Location = new System.Drawing.Point(72, 106);
+            this.buttonCalc.Location = new System.Drawing.Point(54, 86);
+            this.buttonCalc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCalc.Name = "buttonCalc";
-            this.buttonCalc.Size = new System.Drawing.Size(150, 48);
+            this.buttonCalc.Size = new System.Drawing.Size(112, 39);
             this.buttonCalc.TabIndex = 5;
             this.buttonCalc.Text = "Find";
             this.buttonCalc.UseVisualStyleBackColor = true;
@@ -250,9 +283,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Modern No. 20", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label3.Location = new System.Drawing.Point(85, 473);
+            this.label3.Location = new System.Drawing.Point(115, 389);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(248, 25);
+            this.label3.Size = new System.Drawing.Size(200, 21);
             this.label3.TabIndex = 7;
             this.label3.Text = "Selected Airport Info:";
             // 
@@ -271,15 +305,16 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 501);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(64, 412);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(382, 162);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(289, 132);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // labelIATA
@@ -288,9 +323,10 @@
             this.labelIATA.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelIATA.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIATA.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelIATA.Location = new System.Drawing.Point(101, 140);
+            this.labelIATA.Location = new System.Drawing.Point(76, 114);
+            this.labelIATA.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelIATA.Name = "labelIATA";
-            this.labelIATA.Size = new System.Drawing.Size(278, 22);
+            this.labelIATA.Size = new System.Drawing.Size(211, 18);
             this.labelIATA.TabIndex = 11;
             // 
             // labelAirportName
@@ -299,9 +335,10 @@
             this.labelAirportName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelAirportName.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAirportName.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelAirportName.Location = new System.Drawing.Point(101, 102);
+            this.labelAirportName.Location = new System.Drawing.Point(76, 84);
+            this.labelAirportName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAirportName.Name = "labelAirportName";
-            this.labelAirportName.Size = new System.Drawing.Size(278, 22);
+            this.labelAirportName.Size = new System.Drawing.Size(211, 18);
             this.labelAirportName.TabIndex = 9;
             // 
             // labelCity
@@ -310,9 +347,10 @@
             this.labelCity.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelCity.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCity.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelCity.Location = new System.Drawing.Point(101, 60);
+            this.labelCity.Location = new System.Drawing.Point(76, 50);
+            this.labelCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCity.Name = "labelCity";
-            this.labelCity.Size = new System.Drawing.Size(278, 22);
+            this.labelCity.Size = new System.Drawing.Size(211, 18);
             this.labelCity.TabIndex = 9;
             // 
             // labelCountry
@@ -321,9 +359,10 @@
             this.labelCountry.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelCountry.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCountry.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelCountry.Location = new System.Drawing.Point(101, 19);
+            this.labelCountry.Location = new System.Drawing.Point(76, 16);
+            this.labelCountry.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCountry.Name = "labelCountry";
-            this.labelCountry.Size = new System.Drawing.Size(278, 22);
+            this.labelCountry.Size = new System.Drawing.Size(211, 18);
             this.labelCountry.TabIndex = 9;
             // 
             // label6
@@ -332,9 +371,10 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label6.Location = new System.Drawing.Point(7, 102);
+            this.label6.Location = new System.Drawing.Point(3, 84);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(84, 22);
+            this.label6.Size = new System.Drawing.Size(68, 18);
             this.label6.TabIndex = 9;
             this.label6.Text = "Airport:";
             // 
@@ -344,9 +384,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label5.Location = new System.Drawing.Point(23, 60);
+            this.label5.Location = new System.Drawing.Point(15, 50);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 22);
+            this.label5.Size = new System.Drawing.Size(43, 18);
             this.label5.TabIndex = 9;
             this.label5.Text = "City:";
             // 
@@ -356,9 +397,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label4.Location = new System.Drawing.Point(5, 19);
+            this.label4.Location = new System.Drawing.Point(4, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 22);
+            this.label4.Size = new System.Drawing.Size(66, 34);
             this.label4.TabIndex = 9;
             this.label4.Text = "Country:";
             // 
@@ -368,35 +410,21 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label7.Location = new System.Drawing.Point(18, 140);
+            this.label7.Location = new System.Drawing.Point(11, 114);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 22);
+            this.label7.Size = new System.Drawing.Size(51, 18);
             this.label7.TabIndex = 10;
             this.label7.Text = "IATA";
             // 
-            // comboBoxCity1
-            // 
-            this.comboBoxCity1.FormattingEnabled = true;
-            this.comboBoxCity1.Location = new System.Drawing.Point(121, 39);
-            this.comboBoxCity1.Name = "comboBoxCity1";
-            this.comboBoxCity1.Size = new System.Drawing.Size(121, 30);
-            this.comboBoxCity1.TabIndex = 1;
-            // 
-            // comboBoxCity2
-            // 
-            this.comboBoxCity2.FormattingEnabled = true;
-            this.comboBoxCity2.Location = new System.Drawing.Point(121, 65);
-            this.comboBoxCity2.Name = "comboBoxCity2";
-            this.comboBoxCity2.Size = new System.Drawing.Size(121, 30);
-            this.comboBoxCity2.TabIndex = 2;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 675);
+            this.ClientSize = new System.Drawing.Size(946, 553);
             this.Controls.Add(this.splitContainer1);
-            this.MinimumSize = new System.Drawing.Size(1280, 720);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(962, 592);
             this.Name = "Form1";
             this.Text = "AirportsTracking";
             this.splitContainer1.Panel1.ResumeLayout(false);
