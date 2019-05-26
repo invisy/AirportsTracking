@@ -38,6 +38,7 @@ namespace AirportsTracking
 
         private void ShowAirportsInTwoCity(string city1, string city2)
         {
+            List<int> PointColor = new List<int>();
             allAirports = AirlineData.ReturnListOfAirportsBy2City(city1, city2);
             for (int i = 0; i < allAirports.Count; i++)
             {
@@ -45,13 +46,13 @@ namespace AirportsTracking
                 if (allAirports[i].CityName == city1)
                 {
                     GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.blue_dot);
-                    marker.ToolTipText = Convert.ToString(i);
+                    marker.ToolTipText = Convert.ToString(i) + 'f';
                     overlay.Markers.Add(marker);
                 }
                 else
                 {
                     GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
-                    marker.ToolTipText = Convert.ToString(i);
+                    marker.ToolTipText = Convert.ToString(i) + 's';
                     overlay.Markers.Add(marker);
                 }
             }
@@ -82,7 +83,7 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.red_dot);
-                    marker.ToolTipText = Convert.ToString(i);
+                    marker.ToolTipText = Convert.ToString(i + 's');
                     overlay.Markers.Add(marker);
                 }
                 else if (i == 0)
@@ -91,7 +92,7 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i + 1].Latitude, allAirports[i + 1].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.green_dot);
-                    marker.ToolTipText = Convert.ToString(i);
+                    marker.ToolTipText = Convert.ToString(i + 'f');
                     overlay.Markers.Add(marker);
 
                     var polygon = new GMapPolygon(points, "line");
@@ -104,7 +105,7 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i + 1].Latitude, allAirports[i + 1].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.yellow_dot);
-                    marker.ToolTipText = Convert.ToString(i);
+                    marker.ToolTipText = Convert.ToString(i + 'm');
                     overlay.Markers.Add(marker);
 
                     var polygon = new GMapPolygon(points, "line");
@@ -155,10 +156,21 @@ namespace AirportsTracking
 
         private void gMap_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            labelCountry.Text = allAirports[Convert.ToInt32(item.ToolTipText)].CountryName;
-            labelCity.Text = allAirports[Convert.ToInt32(item.ToolTipText)].CityName;
-            labelAirportName.Text = allAirports[Convert.ToInt32(item.ToolTipText)].AirportName;
-            labelIATA.Text = allAirports[Convert.ToInt32(item.ToolTipText)].IATA;
+            int k = int.Parse(item.ToolTipText[0].ToString());
+
+            labelCountry.Text = allAirports[k].CountryName;
+            labelCity.Text = allAirports[k].CityName;
+            labelAirportName.Text = allAirports[k].AirportName;
+            labelIATA.Text = allAirports[k].IATA;
+            
+            if (item.ToolTipText[1] == 'f')
+            {
+                textBoxIATA1.Text = allAirports[k].IATA;
+            }
+            else
+            {
+                textBoxIATA2.Text = allAirports[k].IATA;
+            }
         }
 
     }
