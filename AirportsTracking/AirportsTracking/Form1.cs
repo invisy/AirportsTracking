@@ -47,12 +47,14 @@ namespace AirportsTracking
                 {
                     GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.blue_dot);
                     marker.ToolTipText = Convert.ToString(i) + 'f';
+                    marker.ToolTipMode = MarkerTooltipMode.Never;
                     overlay.Markers.Add(marker);
                 }
                 else
                 {
                     GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
                     marker.ToolTipText = Convert.ToString(i) + 's';
+                    marker.ToolTipMode = MarkerTooltipMode.Never;
                     overlay.Markers.Add(marker);
                 }
             }
@@ -83,7 +85,8 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i].Latitude, allAirports[i].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.red_dot);
-                    marker.ToolTipText = Convert.ToString(i + 's');
+                    marker.ToolTipText = Convert.ToString(i) + 's';
+                    marker.ToolTipMode = MarkerTooltipMode.Never;
                     overlay.Markers.Add(marker);
                 }
                 else if (i == 0)
@@ -92,7 +95,8 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i + 1].Latitude, allAirports[i + 1].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.green_dot);
-                    marker.ToolTipText = Convert.ToString(i + 'f');
+                    marker.ToolTipText = Convert.ToString(i) + 'f';
+                    marker.ToolTipMode = MarkerTooltipMode.Never;
                     overlay.Markers.Add(marker);
 
                     var polygon = new GMapPolygon(points, "line");
@@ -105,7 +109,8 @@ namespace AirportsTracking
                     points.Add(new PointLatLng(allAirports[i + 1].Latitude, allAirports[i + 1].Longitude));
 
                     GMapMarker marker = new GMarkerGoogle(points[0], GMarkerGoogleType.yellow_dot);
-                    marker.ToolTipText = Convert.ToString(i + 'm');
+                    marker.ToolTipText = Convert.ToString(i) + 'm';
+                    marker.ToolTipMode = MarkerTooltipMode.Never;
                     overlay.Markers.Add(marker);
 
                     var polygon = new GMapPolygon(points, "line");
