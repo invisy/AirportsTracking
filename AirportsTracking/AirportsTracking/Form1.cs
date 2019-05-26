@@ -131,10 +131,6 @@ namespace AirportsTracking
             gMap.Overlays.Add(overlay);
         }
 
-
-
-
-
         private void buttonRoute_Click(object sender, EventArgs e)
         {
             gMap.MapProvider = GMapProviders.GoogleMap;
@@ -164,13 +160,9 @@ namespace AirportsTracking
             labelIATA.Text = allAirports[k].IATA;
             
             if (item.ToolTipText[1] == 'f')
-            {
                 textBoxIATA1.Text = allAirports[k].IATA;
-            }
             else
-            {
                 textBoxIATA2.Text = allAirports[k].IATA;
-            }
         }
 
     }
