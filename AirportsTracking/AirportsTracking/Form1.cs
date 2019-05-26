@@ -22,14 +22,18 @@ namespace AirportsTracking
 
         public Form1()
         {
+            InitializeComponent();
             AirlineData.LoadData();
             GMapProviders.GoogleMap.ApiKey = @"AIzaSyAPFEPeEVq_ECcRp6lcWzh-zpmyJG6nQKo";
-            InitializeComponent();
 
             gMap.MapProvider = GMapProviders.GoogleMap;
             gMap.ShowCenter = false;
             gMap.Position = new PointLatLng(25, 35);
 
+            List<String> citylist = MergeSortClass<String>.MergeSort(AirlineData.GetCityList());
+            List<String> citylist2 = citylist.GetRange(0, citylist.Count);
+            comboBoxCity1.DataSource = citylist;
+            comboBoxCity2.DataSource = citylist2;
         }
 
         private void ShowAirportsInTwoCity(string city1, string city2)

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SortingA
+namespace AirportsTracking
 {
-    class MergeSortClass
+    static class MergeSortClass<T> where T: IComparable
     {
-        private static List<int> MergeSort(List<int> unsorted)
+        public static List<T> MergeSort(List<T> unsorted)
         {
             if (unsorted.Count <= 1)
                 return unsorted;
 
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
+            List<T> left = new List<T>();
+            List<T> right = new List<T>();
 
             int middle = unsorted.Count / 2;
             for (int i = 0; i < middle; i++)
@@ -30,15 +30,15 @@ namespace SortingA
             return Merge(left, right);
         }
 
-        private static List<int> Merge(List<int> left, List<int> right)
+        private static List<T> Merge(List<T> left, List<T> right)
         {
-            List<int> result = new List<int>();
+            List<T> result = new List<T>();
 
             while (left.Count > 0 || right.Count > 0)
             {
                 if (left.Count > 0 && right.Count > 0)
                 {
-                    if (left.First() <= right.First())
+                    if (left.First().CompareTo(right.First()) <=0)
                     {
                         result.Add(left.First());
                         left.Remove(left.First());

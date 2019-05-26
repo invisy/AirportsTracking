@@ -107,6 +107,17 @@ namespace AirportsTracking
             return null;
         }
 
+        protected internal static List<String> GetCityList()
+        {
+            List<String> citylist = new List<String>();
+            foreach (KeyValuePair<String, Airport> curr in DictOfAirports)
+            {
+                if (!citylist.Contains(curr.Value.CityName))
+                    citylist.Add(curr.Value.CityName);
+            }
+            return citylist;
+        }
+
         protected internal static Airport GetAirPort(string code)
         {
             return DictOfAirports[code];
