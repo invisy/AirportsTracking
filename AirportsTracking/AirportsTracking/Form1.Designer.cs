@@ -37,11 +37,9 @@
             this.buttonRoute = new System.Windows.Forms.Button();
             this.textBoxIATA2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxCity1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonCalc = new System.Windows.Forms.Button();
-            this.textBoxCity2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelIATA = new System.Windows.Forms.Label();
@@ -52,6 +50,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxCity1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxCity2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -191,11 +191,11 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox1.Controls.Add(this.textBoxCity1);
+            this.groupBox1.Controls.Add(this.comboBoxCity2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.comboBoxCity1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonCalc);
-            this.groupBox1.Controls.Add(this.textBoxCity2);
             this.groupBox1.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(69, 12);
@@ -204,14 +204,6 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
-            // 
-            // textBoxCity1
-            // 
-            this.textBoxCity1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBoxCity1.Location = new System.Drawing.Point(117, 44);
-            this.textBoxCity1.Name = "textBoxCity1";
-            this.textBoxCity1.Size = new System.Drawing.Size(157, 29);
-            this.textBoxCity1.TabIndex = 3;
             // 
             // label1
             // 
@@ -251,14 +243,6 @@
             this.buttonCalc.Text = "Find";
             this.buttonCalc.UseVisualStyleBackColor = true;
             this.buttonCalc.Click += new System.EventHandler(this.buttonCalc_Click);
-            // 
-            // textBoxCity2
-            // 
-            this.textBoxCity2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBoxCity2.Location = new System.Drawing.Point(117, 68);
-            this.textBoxCity2.Name = "textBoxCity2";
-            this.textBoxCity2.Size = new System.Drawing.Size(157, 29);
-            this.textBoxCity2.TabIndex = 4;
             // 
             // label3
             // 
@@ -304,9 +288,9 @@
             this.labelIATA.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelIATA.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIATA.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelIATA.Location = new System.Drawing.Point(102, 140);
+            this.labelIATA.Location = new System.Drawing.Point(101, 140);
             this.labelIATA.Name = "labelIATA";
-            this.labelIATA.Size = new System.Drawing.Size(277, 22);
+            this.labelIATA.Size = new System.Drawing.Size(278, 22);
             this.labelIATA.TabIndex = 11;
             // 
             // labelAirportName
@@ -315,9 +299,9 @@
             this.labelAirportName.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelAirportName.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAirportName.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelAirportName.Location = new System.Drawing.Point(102, 102);
+            this.labelAirportName.Location = new System.Drawing.Point(101, 102);
             this.labelAirportName.Name = "labelAirportName";
-            this.labelAirportName.Size = new System.Drawing.Size(277, 22);
+            this.labelAirportName.Size = new System.Drawing.Size(278, 22);
             this.labelAirportName.TabIndex = 9;
             // 
             // labelCity
@@ -326,9 +310,9 @@
             this.labelCity.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelCity.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCity.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelCity.Location = new System.Drawing.Point(102, 60);
+            this.labelCity.Location = new System.Drawing.Point(101, 60);
             this.labelCity.Name = "labelCity";
-            this.labelCity.Size = new System.Drawing.Size(277, 22);
+            this.labelCity.Size = new System.Drawing.Size(278, 22);
             this.labelCity.TabIndex = 9;
             // 
             // labelCountry
@@ -337,9 +321,9 @@
             this.labelCountry.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelCountry.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCountry.ForeColor = System.Drawing.Color.Cornsilk;
-            this.labelCountry.Location = new System.Drawing.Point(102, 19);
+            this.labelCountry.Location = new System.Drawing.Point(101, 19);
             this.labelCountry.Name = "labelCountry";
-            this.labelCountry.Size = new System.Drawing.Size(277, 22);
+            this.labelCountry.Size = new System.Drawing.Size(278, 22);
             this.labelCountry.TabIndex = 9;
             // 
             // label6
@@ -372,7 +356,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label4.Location = new System.Drawing.Point(6, 19);
+            this.label4.Location = new System.Drawing.Point(5, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 22);
             this.label4.TabIndex = 9;
@@ -389,6 +373,22 @@
             this.label7.Size = new System.Drawing.Size(62, 22);
             this.label7.TabIndex = 10;
             this.label7.Text = "IATA";
+            // 
+            // comboBoxCity1
+            // 
+            this.comboBoxCity1.FormattingEnabled = true;
+            this.comboBoxCity1.Location = new System.Drawing.Point(121, 39);
+            this.comboBoxCity1.Name = "comboBoxCity1";
+            this.comboBoxCity1.Size = new System.Drawing.Size(121, 30);
+            this.comboBoxCity1.TabIndex = 1;
+            // 
+            // comboBoxCity2
+            // 
+            this.comboBoxCity2.FormattingEnabled = true;
+            this.comboBoxCity2.Location = new System.Drawing.Point(121, 65);
+            this.comboBoxCity2.Name = "comboBoxCity2";
+            this.comboBoxCity2.Size = new System.Drawing.Size(121, 30);
+            this.comboBoxCity2.TabIndex = 2;
             // 
             // Form1
             // 
@@ -417,8 +417,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TextBox textBoxCity2;
-        private System.Windows.Forms.TextBox textBoxCity1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCalc;
@@ -440,6 +438,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonRoute;
         private System.Windows.Forms.TextBox textBoxIATA2;
+        private System.Windows.Forms.ComboBox comboBoxCity2;
+        private System.Windows.Forms.ComboBox comboBoxCity1;
     }
 }
 
