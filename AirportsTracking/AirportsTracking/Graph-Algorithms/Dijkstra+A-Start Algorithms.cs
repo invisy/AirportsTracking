@@ -1,16 +1,14 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 using System.Drawing;
 using System.Linq;
 using System.Diagnostics;
 
-namespace AStar
+namespace Deikstra_and_AStar // не забудьте підключити namespace
 {
     public class NextAirport
-    { // adding test line :)
-        // new test text line 
+    {  
         public Airport Current { get; set; }
         public string IATA { get; set; }
         public string Name { get; set; }
@@ -75,73 +73,7 @@ namespace AStar
             return distance * PRICE_FOR_1_KILOMETR;
 
         }
-        
-
-        protected static internal void AStarMinPath(string sourceCode, string destinationCode)
-        {
-            // отримуємо найкоротший шлях від аеропорта А до аеропорта Б 
-            AirlineData.LoadData();
-            var watch = Stopwatch.StartNew();
-            var closedSet = new Queue<NextAirport>();
-            var openSet = new Queue<NextAirport>();
-
-            Airport source = AirlineData.GetAirPort(sourceCode);
-            var next = AirlineData.GetNextStation(sourceCode);
-            Graph.Source = next;
-            var qq = AirlineData.GetAirPort(destinationCode);
-            next.HeuristicEstimatePathLength = GetPath(source, qq);
-            next.previous = null;
-            next.PathLengthFromStart = 0;
-            next.HeuristicEstimatePathLength = GetPath(source, AirlineData.GetAirPort(destinationCode));
-
-            openSet.Enqueue(next);
-            while (openSet.Count > 0)
-            {
-                var currentAirport = openSet.OrderBy( node => node.EstimateFullPathLength).First();
-                if (currentAirport.Current.IATA == destinationCode)
-                {
-                    //Console.WriteLine("SUCCESS!");
-                    Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
-                    Console.WriteLine($"There is the way from {source.AirportName} to {AirlineData.GetAirPort(destinationCode).AirportName} ");
-                    ReturnMinPath(currentAirport);
-                    return;
-                    // ReturnMinPath();                   
-                }
-                var x = openSet.Dequeue(); // openSet.(currentAirport);
-               // Console.WriteLine($"{x.IATA} ------- {x.Current.CountryName}");
-                closedSet.Enqueue(x);
-                //Console.WriteLine($"Number of neighbours ={currentAirport.adjacementList.Count}");
-                foreach (var neighbourNode in currentAirport.adjacementList)
-                {
-                    var neighbourNode1 = AirlineData.GetNextStation(neighbourNode.IATA);
-                    neighbourNode1.previous = currentAirport;
-                    neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(destinationCode)); // виглядає дивно, працює швидко, результат коректний
-                    //neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(neighbourNode.IATA)); // виглядає правильніше, працює довше, результат коректний
-                    neighbourNode1.HeuristicEstimatePathLength = GetPath(neighbourNode1.Current, AirlineData.GetAirPort(destinationCode));
-
-                    if (closedSet.Count( node => node.IATA == neighbourNode1.IATA) > 0)
-                    {
-                        continue;
-                    }
-                    var openNode = openSet.FirstOrDefault(node => node.IATA == neighbourNode1.IATA);
-                    if (openNode == null)
-                        openSet.Enqueue(neighbourNode1);
-
-                    else
-                    {
-                        if (openNode.PathLengthFromStart > neighbourNode1.PathLengthFromStart)
-                        {
-                            openNode.previous = currentAirport;
-                            openNode.PathLengthFromStart = neighbourNode1.PathLengthFromStart;
-                        }
-                    }
-                    
-                }
-            }
-            Console.WriteLine($"There is no way from airport with name {source.AirportName} to airport {AirlineData.GetAirPort(destinationCode).AirportName}");
-            return;
-        }
-        
+          
         protected static internal void DijkstraMinPath(string sourceCode, string destinationCode)
         {
             try
@@ -227,23 +159,6 @@ namespace AStar
                 Console.Write(result[i].IATA + " ->>>");
         }
 
-
-        protected static internal void ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
-        {
-            var result = new List<NextAirport>();
-            var currentNode = pathNode;
-            result.Add(pathNode);
-            while(currentNode != null)
-            {
-                result.Add(currentNode.previous);
-                currentNode = currentNode.previous;
-            }
-            result.Reverse();
-            result.RemoveAt(0);
-            foreach (var x in result)
-                Console.Write($" {x.IATA} ->>>");
-        }
-
         protected static internal void SearchPointsWithBfs(string sourceCode, string searchCode)
         {
             try
@@ -299,4 +214,111 @@ namespace AStar
         }
 
     }
-}*/
+
+    public class AStar
+    {
+        // added new class
+        static NextAirport Source { get; set; }
+
+        static NextAirport Destination { get; set; }
+
+        protected internal static double GetPath(Airport source, Airport destination)
+        {
+            var first = Math.PI * source.Latitude / 180;
+            var firts2 = Math.PI * destination.Latitude / 180;
+            var second = Math.PI * source.Longitude / 180;
+            var second2 = Math.PI * destination.Latitude / 180;
+            var theta = source.Longitude - destination.Longitude;
+            var rTheta = Math.PI * theta / 180;
+            var distance = Math.Sin(first) * Math.Sin(firts2) + Math.Cos(first) * Math.Cos(firts2) * Math.Cos(rTheta);
+            distance = Math.Acos(distance);
+            distance = distance * 180 / Math.PI;
+            distance = distance * 60 * 1.1515 * 1.609344; //in kilometers
+            return distance;
+        }
+
+        protected static internal void AStarMinPath(string sourceCode, string destinationCode)
+        {
+            // отримуємо найкоротший шлях від аеропорта А до аеропорта Б 
+            AirlineData.LoadData();
+            var watch = Stopwatch.StartNew();
+            var closedSet = new Queue<NextAirport>();
+            var openSet = new Queue<NextAirport>();
+
+            Airport source = AirlineData.GetAirPort(sourceCode);
+            var next = AirlineData.GetNextStation(sourceCode);
+            Graph.Source = next;
+            var qq = AirlineData.GetAirPort(destinationCode);
+            next.HeuristicEstimatePathLength = GetPath(source, qq);
+            next.previous = null;
+            next.PathLengthFromStart = 0;
+            next.HeuristicEstimatePathLength = GetPath(source, AirlineData.GetAirPort(destinationCode));
+
+            openSet.Enqueue(next);
+            while (openSet.Count > 0)
+            {
+                var currentAirport = openSet.OrderBy( node => node.EstimateFullPathLength).First();
+                if (currentAirport.Current.IATA == destinationCode)
+                {
+                    //Console.WriteLine("SUCCESS!");
+                    Console.WriteLine("Time spended {0}", watch.ElapsedMilliseconds);
+                    Console.WriteLine($"There is the way from {source.AirportName} to {AirlineData.GetAirPort(destinationCode).AirportName} ");
+                    ReturnMinPath(currentAirport);
+                    return;
+                    // ReturnMinPath();                   
+                }
+                var x = openSet.Dequeue(); // openSet.(currentAirport);
+               // Console.WriteLine($"{x.IATA} ------- {x.Current.CountryName}");
+                closedSet.Enqueue(x);
+                //Console.WriteLine($"Number of neighbours ={currentAirport.adjacementList.Count}");
+                foreach (var neighbourNode in currentAirport.adjacementList)
+                {
+                    var neighbourNode1 = AirlineData.GetNextStation(neighbourNode.IATA);
+                    neighbourNode1.previous = currentAirport;
+                    neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(destinationCode)); // виглядає дивно, працює швидко, результат коректний
+                    //neighbourNode1.PathLengthFromStart = currentAirport.PathLengthFromStart + GetPath(currentAirport.Current, AirlineData.GetAirPort(neighbourNode.IATA)); // виглядає правильніше, працює довше, результат коректний
+                    neighbourNode1.HeuristicEstimatePathLength = GetPath(neighbourNode1.Current, AirlineData.GetAirPort(destinationCode));
+
+                    if (closedSet.Count( node => node.IATA == neighbourNode1.IATA) > 0)
+                    {
+                        continue;
+                    }
+                    var openNode = openSet.FirstOrDefault(node => node.IATA == neighbourNode1.IATA);
+                    if (openNode == null)
+                        openSet.Enqueue(neighbourNode1);
+
+                    else
+                    {
+                        if (openNode.PathLengthFromStart > neighbourNode1.PathLengthFromStart)
+                        {
+                            openNode.previous = currentAirport;
+                            openNode.PathLengthFromStart = neighbourNode1.PathLengthFromStart;
+                        }
+                    }
+                    
+                }
+            }
+            Console.WriteLine($"There is no way from airport with name {source.AirportName} to airport {AirlineData.GetAirPort(destinationCode).AirportName}");
+            return;
+        }
+
+        protected static internal void ReturnMinPath(NextAirport pathNode) // відновлення шляху після алгоритму А*
+        {
+            var result = new List<NextAirport>();
+            var currentNode = pathNode;
+            result.Add(pathNode);
+            while(currentNode != null)
+            {
+                result.Add(currentNode.previous);
+                currentNode = currentNode.previous;
+            }
+            result.Reverse();
+            result.RemoveAt(0);
+            foreach (var x in result)
+                Console.Write($" {x.IATA} ->>>");
+        }
+
+    }
+
+
+}
