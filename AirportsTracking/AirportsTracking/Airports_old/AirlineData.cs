@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Airports
+namespace Airport_old
 {
-
-
-
     public class AirlineData
     {
         protected internal static List<Route> listOfRoutes = new List<Route>();
@@ -18,10 +15,6 @@ namespace Airports
         protected internal static string[] Routes { get; set; }
         protected internal static string[] Neighbours { get; set; }
         protected internal static Dictionary<string, NextAirport> DictOfNeighbours { get; set; }
-
-
-
-
 
         protected static internal Airport GetAirPort(string airportCodeName)
         {
@@ -46,21 +39,21 @@ namespace Airports
             return null;
         }
 
-        protected static internal List<Airport> ReturnListOfAirportsBy2City(string cityOne, string cityTwo)
+        protected static internal List<Airport> ReturnListOfAirportsBy2City(string city1, string city2)
         {
             var list = new List<Airport>();
-            Airports = GetAllInfoFromFile("airports.txt");
+            Airports = GetAllInfoFromFile("Resources/airports.txt");
             var allAirports = GetAirPort();
-            foreach(var airport in allAirports)
+            foreach (var airport in allAirports)
             {
-                if (airport.CityName == cityOne || airport.CityName == cityTwo)
+                if (airport.CityName == city1 || airport.CityName == city2)
                 {
                     list.Add(airport);
                 }
             }
             return list;
         }
-    
+
         protected static internal Airport CreateAirport(string[] temp)
         {
             airport = new Airport(temp);
@@ -76,10 +69,10 @@ namespace Airports
                 foreach (var line in Airports)
                 {
                     string[] temp = line.Replace("\"", "").Split(",".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
-                        var airport = CreateAirport(temp);
-                    if(airport!= null)
+                    var airport = CreateAirport(temp);
+                    if (airport != null)
                         listOfAirports.Add(airport);
-                    
+
                 }
                 return listOfAirports;
             }
@@ -89,7 +82,6 @@ namespace Airports
             }
             return null;
         }
-        //reee
         protected static internal List<Route> GetRoutes()
         {
             try
@@ -121,9 +113,9 @@ namespace Airports
             try
             {
                 DictOfNeighbours = new Dictionary<string, NextAirport>();
-                Airports = GetAllInfoFromFile("airports.txt");
-                Routes = GetAllInfoFromFile("routes.txt");
-                Neighbours = GetAllInfoFromFile("nextStations.txt");
+                Airports = GetAllInfoFromFile("Resources/airports.txt");
+                Routes = GetAllInfoFromFile("Resources/routes.txt");
+                Neighbours = GetAllInfoFromFile("Resources/nextStations.txt");
                 var allAirports = GetAirPort();
                 foreach (var airport in allAirports)
                 {
@@ -137,9 +129,7 @@ namespace Airports
             {
                 Console.WriteLine(a.Message);
             }
-           // return null;
         }
-        //reee
         protected static internal List<Route> GetRoutes(string codeName)
         {
             try
@@ -157,7 +147,6 @@ namespace Airports
             }
             return null;
         }
-        //reeee
         protected static internal LinkedList<Airport> GetNeighbours(string codeName, List<Route> routes)
         {
             try
@@ -165,7 +154,7 @@ namespace Airports
                 LinkedList<Airport> neighbours = new LinkedList<Airport>();
                 foreach (var port in routes)
                 {
-                    if ( port != null && port.SourceName == codeName)
+                    if (port != null && port.SourceName == codeName)
                     {
                         var next = GetAirPort(port.DestinationName);
 
@@ -188,8 +177,6 @@ namespace Airports
             }
             return null;
         }
-
-        //reeeee
         protected internal static void WriteCsw()
         {
             try
@@ -210,14 +197,13 @@ namespace Airports
                             csv.AppendLine(newLine);
                     }
                 }
-                File.WriteAllText("nextStations.txt", csv.ToString());
+                File.WriteAllText("Resources/nextStations.txt", csv.ToString());
             }
             catch (Exception a)
             {
                 Console.WriteLine(a.Message);
             }
         }
-        //raeeaeee
         protected internal static NextAirport GetNextStation(string stationCode)
         {
             try
@@ -225,15 +211,15 @@ namespace Airports
                 foreach (var line in Neighbours)
                 {
                     string[] temp = line.Split(";".ToCharArray(), System.StringSplitOptions.RemoveEmptyEntries);
-                        if (temp.Length==3 && temp[0] == stationCode)
-                        {
+                    if (temp.Length == 3 && temp[0] == stationCode)
+                    {
                         var airport = GetAirPort(temp[0]);
                         if (airport != null)
                         {
                             NextAirport nextAirport = new NextAirport(airport, temp[1], int.MaxValue, JsonConvert.DeserializeObject<LinkedList<Airport>>(temp[2]));
                             return nextAirport;
                         }
-                        }
+                    }
                 }
             }
             catch (Exception a)
@@ -243,7 +229,7 @@ namespace Airports
             return null;
 
         }
-        protected internal static string[] GetAllInfoFromFile( string resource)
+        protected internal static string[] GetAllInfoFromFile(string resource)
         {
             try
             {
@@ -264,6 +250,3 @@ namespace Airports
         }
     }
 }
- 
-
-    
